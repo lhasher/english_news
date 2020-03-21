@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../resources/plugins/angularjs/angular.min.js"></script>
+</head>
+<body>
+<h1>hello world</h1>
+</body>
+<div id="t"></div>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+<!--<script src="./jquery-3.4.1/jquery-3.4.1.js"></script>-->
+<script src="../../resources/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    /*$(document).ready(function () {
+alert("abc")
+    })*/
+    function getData(){
+        return "test get data"
+    }
+    function getRequest(url){
+        $.get(url,function (data) {
+            alert(typeof(data))
+            console.log(data)
+            alert(data)
+            for (let i = 0; i < data.length; i++) {
+                alert(data[i])
+            }
+        })
+    }
+
+    function getOne(url){
+        $.get(url,function (user) {
+            alert(user)
+            console.log(user)
+            alert(typeof (user))
+            $("#t").html(
+                "<div>"+user.uname+"</div>" +
+                "<div>"+user.age+"</div>" +
+                "<div>"+user.sex+"</div>" +
+                "<div>"+user.phoneNum+"</div>" +
+                "<div>"+user.email+"</div>")
+        })
+    }
+    $(function () {
+        alert("test")
+        let data = getData();
+        alert(data)
+        getRequest("./u/register")
+        getOne("./u/one")
+    })
+</script>
+</html>

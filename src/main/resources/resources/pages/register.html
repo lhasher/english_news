@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Registration Page</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../dist/css/login_background.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition register-page" ng-app="userApp" ng-controller="registerCrl">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../resources/index3.html"><b>English</b>News</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">英语报刊会员注册</p>
+      <form novalidate name="reg_form" ng-submit="registerIn()">
+        <div class="input-group mb-2">
+          <input required name="username" type="text" class="form-control"  placeholder="会员名" ng-model="user.uname" ng-pattern="/^\w{5,18}/">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-danger" ng-show="reg_form.username.$dirty && reg_form.username.$invalid">
+          用户名必须为5-18个字母、数字或下划线
+        </div>
+        <div class="input-group mb-2">
+          <input type="email" name= "email" class="form-control" placeholder="Email" ng-model="user.email" ng-pattern="/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-danger" ng-show="reg_form.email.$dirty && reg_form.email.$invalid">
+          请检查邮箱格式
+        </div>
+        <div class="input-group mb-2">
+          <input type="tel" class="form-control" name="phone" placeholder="手机" ng-model="user.phoneNum" ng-pattern="/^[1]([3-9])[0-9]{9}$/">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-mobile"></span>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-danger" ng-show="reg_form.phone.$dirty && reg_form.phone.$invalid">
+          请检查手机号格式是否正确
+        </div>
+        <div class="input-group-text mb-1">
+          <div class="col-5"><span>性别</span></div>
+          <div class="col-6"><select class="form-control select2" style="width: 100%;" ng-model="user.sex">
+            <option ng-selected="selected">男</option>
+            <option>女</option>
+          </select></div>
+        </div>
+        <div class="input-group mb-2">
+          <input type="password" name= "password" class="form-control" placeholder="登录密码" ng-model="user.password" required ng-minlength="5">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+          <div class="alert alert-danger" ng-show="reg_form.password.$dirty && reg_form.password.$invalid">
+              密码至少5位
+          </div>
+        <div class="input-group mb-2">
+          <input type="password" name= "pw_repeat" class="form-control" placeholder="再次确认登录密码" ng-model="pw_repeat">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+          <div class="alert alert-danger" ng-show="check_result">
+              密码不一致
+          </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+                我同意会员 <a href="#">条款</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">注册</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <div class="social-auth-links text-center">
+        <p>- 或 -</p>
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-qq mr-2"></i>
+          使用QQ登录
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-weixin mr-2"></i>
+          使用微信登录
+        </a>
+      </div>
+
+      <a href="./login.html" class="text-center">我已经有会员</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<script src="../plugins/angularjs/angular.js"></script>
+<script src="../plugins/angularjs/angular-route.js"></script>
+<script src="../angular/baseApp.js"></script>
+<script src="../angular/app/UserApp.js"></script>
+<script src="../angular/controller/registerController.js"></script>
+<script src="../angular/service/userService.js"></script>
+
+</body>
+</html>

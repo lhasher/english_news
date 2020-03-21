@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS 表达式</title>
+</head>
+<body>
+<h1>Sample Application</h1>
+<div ng-app="" ng-init="studentController">
+<p ng-model="student">{{user.uname}}</p>
+</div>
+<script src="../../resources/plugins/angularjs/angular.min.js"></script>
+<script>
+    function studentController($scope,$http) {
+
+            $http.get("./u/one").success(function (data) {
+                alert(data)
+                console.log(data)
+                $scope.user=data
+            })
+
+    }
+</script>
+</body>
+</html>

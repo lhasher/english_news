@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS 表达式</title>
+</head>
+<body>
+<h1>Sample Application</h1>
+<div ng-app="" ng-init="quantity=1;cost=30; student={firstname:'李',lastname:'刚',rollno:101};marks=[82,91,78,77,64]">
+    <p>{{student.firstname}}</p>
+    <p>Hello {{student.firstname + " " + student.lastname}}!</p>
+    <p>{{quantity*cost}}</p>
+    <p><p>Marks(Math): {{marks[3]}}</p></p>
+</div>
+<script src="../../resources/plugins/angularjs/angular.min.js"></script>
+</body>
+</html>

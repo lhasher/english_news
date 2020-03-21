@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/english_news?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  mvc:
+#    view:
+#      prefix: /static/
+#      suffix: .html
+#    static-path-pattern: resources/**
+  resources:
+    static-locations:
+      - classpath:/resources
+      - classpath:/static
+
+  devtools:
+    add-properties: true
+  mail:
+    host: smtp.qq.com
+    username: 863577223@qq.com
+    password: pvwvnhgwuwznbfee
+    port: 25
+    protocol: smtp
+    default-encoding: utf-8

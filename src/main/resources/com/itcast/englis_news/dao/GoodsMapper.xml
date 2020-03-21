@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.englis_news.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.englis_news.common.Goods">
+    <!--@mbg.generated-->
+    <!--@Table goods-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cate_id" jdbcType="INTEGER" property="cateId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="is_saleoff" jdbcType="BIT" property="isSaleoff" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, cate_id, brand_id, price, is_show, is_saleoff
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.itcast.englis_news.common.Goods" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into goods (`name`, cate_id, brand_id, 
+      price, is_show, is_saleoff)
+    values (#{name,jdbcType=VARCHAR}, #{cateId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{isShow,jdbcType=BIT}, #{isSaleoff,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.itcast.englis_news.common.Goods" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="cateId != null">
+        cate_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="isSaleoff != null">
+        is_saleoff,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId != null">
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isSaleoff != null">
+        #{isSaleoff,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.englis_news.common.Goods">
+    <!--@mbg.generated-->
+    update goods
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId != null">
+        cate_id = #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="isSaleoff != null">
+        is_saleoff = #{isSaleoff,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.englis_news.common.Goods">
+    <!--@mbg.generated-->
+    update goods
+    set `name` = #{name,jdbcType=VARCHAR},
+      cate_id = #{cateId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      is_show = #{isShow,jdbcType=BIT},
+      is_saleoff = #{isSaleoff,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from goods;
+  </select>
+</mapper>

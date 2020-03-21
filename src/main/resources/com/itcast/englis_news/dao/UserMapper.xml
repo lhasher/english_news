@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.englis_news.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.englis_news.common.User">
+    <!--@mbg.generated-->
+    <!--@Table user-->
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="phone_num" jdbcType="CHAR" property="phoneNum" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    <result column="isVerify" jdbcType="CHAR" property="setIsVerify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `uid`, uname, `password`, sex, age, phone_num, email, register_date, last_login_date, 
+    isVerify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where `uid` = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user
+    where `uid` = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="uid" keyProperty="uid" parameterType="com.itcast.englis_news.common.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+      insert into user (uname, `password`, sex,
+      age, phone_num, email,
+      register_date, last_login_date, isVerify
+      )
+      values (#{uname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR},
+      #{age,jdbcType=INTEGER}, #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=VARCHAR},
+      #{registerDate,jdbcType=TIMESTAMP}, #{lastLoginDate,jdbcType=TIMESTAMP}, #{isVerify,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="uid" keyProperty="uid" parameterType="com.itcast.englis_news.common.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+      <if test="lastLoginDate != null">
+        last_login_date,
+      </if>
+      <if test="isVerify != null">
+        isVerify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null">
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isVerify != null">
+          #{isVerify,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.englis_news.common.User">
+    <!--@mbg.generated-->
+    update user
+    <set>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null">
+        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isVerify != null">
+          isVerify = #{isVerify,jdbcType=CHAR},
+      </if>
+    </set>
+    where `uid` = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.englis_news.common.User">
+    <!--@mbg.generated-->
+      update user
+      set uname = #{uname,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      phone_num = #{phoneNum,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      isVerify = #{isVerify,jdbcType=CHAR}
+      where `uid` = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

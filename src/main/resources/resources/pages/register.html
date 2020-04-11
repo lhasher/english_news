@@ -29,58 +29,60 @@
       <p class="login-box-msg">英语报刊会员注册</p>
       <form novalidate name="reg_form" ng-submit="registerIn()">
         <div class="input-group mb-2">
-          <input required name="username" type="text" class="form-control"  placeholder="会员名" ng-model="user.uname" ng-pattern="/^\w{5,18}/">
+          <input required name="username" type="text" class="form-control"  placeholder="输入英文用户名" ng-model="user.uname" ng-blur="checkUserName(reg_form.username)" ng-pattern="/^\w{5,18}/">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
-        <div class="alert alert-danger" ng-show="reg_form.username.$dirty && reg_form.username.$invalid">
+        <div class="alert alert-danger" ng-show="reg_form.username.$dirty && uname_is_usefull">
           用户名必须为5-18个字母、数字或下划线
         </div>
         <div class="input-group mb-2">
-          <input type="email" name= "email" class="form-control" placeholder="Email" ng-model="user.email" ng-pattern="/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/">
+          <input type="email" name= "email" class="form-control" placeholder="绑定邮箱" ng-model="user.email" ng-blur="checkEmail(reg_form.email)" ng-pattern="/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
-        <div class="alert alert-danger" ng-show="reg_form.email.$dirty && reg_form.email.$invalid">
+        <div class="alert alert-danger" ng-show="reg_form.email.$dirty && email_is_usefull">
           请检查邮箱格式
         </div>
         <div class="input-group mb-2">
-          <input type="tel" class="form-control" name="phone" placeholder="手机" ng-model="user.phoneNum" ng-pattern="/^[1]([3-9])[0-9]{9}$/">
+          <input type="tel" class="form-control" name="phone" placeholder="手机" ng-model="user.phoneNum" ng-blur="checkPhone(reg_form.phone)" ng-pattern="/^[1]([3-9])[0-9]{9}$/">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-mobile"></span>
             </div>
           </div>
         </div>
-        <div class="alert alert-danger" ng-show="reg_form.phone.$dirty && reg_form.phone.$invalid">
+        <div class="alert alert-danger" ng-show="reg_form.phone.$dirty && phone_is_usefull">
           请检查手机号格式是否正确
         </div>
-        <div class="input-group-text mb-1">
+        <!--<div class="input-group-text mb-1">
           <div class="col-5"><span>性别</span></div>
-          <div class="col-6"><select class="form-control select2" style="width: 100%;" ng-model="user.sex">
-            <option ng-selected="selected">男</option>
-            <option>女</option>
-          </select></div>
-        </div>
+          <div class="col-6">
+            <select class="form-control select2-dropdown" style="width: 100%" ng-model="user.sex" ng-init="user.sex='男'">
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
+          </div>
+        </div>-->
         <div class="input-group mb-2">
-          <input type="password" name= "password" class="form-control" placeholder="登录密码" ng-model="user.password" required ng-minlength="5">
+          <input type="password" name= "password" class="form-control" placeholder="密码最小长度为5" ng-model="user.password" ng-blur="checkPW(reg_form.password)" required ng-minlength="5">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-          <div class="alert alert-danger" ng-show="reg_form.password.$dirty && reg_form.password.$invalid">
-              密码至少5位
+          <div class="alert alert-danger" ng-show="reg_form.password.$dirty && password_is_usefull">
+            密码最小长度为5
           </div>
         <div class="input-group mb-2">
-          <input type="password" name= "pw_repeat" class="form-control" placeholder="再次确认登录密码" ng-model="pw_repeat">
+          <input type="password" name= "pw_repeat" class="form-control" placeholder="再次输入密码" ng-model="pw_repeat">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -90,6 +92,15 @@
           <div class="alert alert-danger" ng-show="check_result">
               密码不一致
           </div>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" name="captcha" placeholder="邮箱验证码" ng-model="verifyCode_input" ng-focus="backToNormal()">
+          <span class="input-group-append">
+                    <button type="button" class="btn btn-info btn-flat" ng-click="sendVerifyCode(user.email)">发送验证码</button>
+                  </span>
+        </div>
+        <div class="alert alert-danger" ng-show="is_verifyCodeLoss">
+          {{error_message}}
+        </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
@@ -112,7 +123,7 @@
           <i class="fab fa-qq mr-2"></i>
           使用QQ登录
         </a>
-        <a href="#" class="btn btn-block btn-danger">
+        <a href="#" class="btn btn-block btn-success">
           <i class="fab fa-weixin mr-2"></i>
           使用微信登录
         </a>

@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "name": "path-manager.security-config-path.login-page",
+      "type": "java.lang.String",
+      "description": "登陆页面路径."
+    },
+    {
+      "name": "path-manager.security-config-path.login-url",
+      "type": "java.lang.String",
+      "description": "登陆请求url."
+    },
+    {
+      "name": "path-manager.security-config-path.ant-matchers",
+      "type": "java.lang.String[]",
+      "description": "不拦截资源路径."
+    },
+    {
+      "name": "path-manager.email-template-path",
+      "type": "java.lang.String",
+      "description": "邮件模板路径."
+    },
+    {
+      "name": "path-manager.security-config-path.login-success-url",
+      "type": "java.lang.String",
+      "description": "登陆成功跳转的url地址."
+    },
+    {
+      "name": "path-manager.security-config-path.logout-success-url",
+      "type": "java.lang.String",
+      "description": "登出后跳转url地址."
+    }
+  ] }

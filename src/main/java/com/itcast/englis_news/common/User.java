@@ -28,11 +28,6 @@ public class User implements Serializable {
     private String sex;
 
     /**
-     * 年龄
-     */
-    private Integer age;
-
-    /**
      * 手机号
      */
     private String phoneNum;
@@ -45,17 +40,17 @@ public class User implements Serializable {
     /**
      * 注册时间
      */
+    private Date birthday;
+
+    /**
+     * 注册时间
+     */
     private Date registerDate;
 
     /**
      * 上次登录时间
      */
     private Date lastLoginDate;
-
-    /**
-     * 邮件验证
-     */
-    private String isVerify;
 
     private static final long serialVersionUID = 1L;
 }

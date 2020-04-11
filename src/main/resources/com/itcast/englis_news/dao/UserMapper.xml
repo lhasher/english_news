@@ -8,17 +8,15 @@
     <result column="uname" jdbcType="VARCHAR" property="uname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="age" jdbcType="INTEGER" property="age" />
     <result column="phone_num" jdbcType="CHAR" property="phoneNum" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
     <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
-    <result column="isVerify" jdbcType="CHAR" property="setIsVerify" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    `uid`, uname, `password`, sex, age, phone_num, email, register_date, last_login_date, 
-    isVerify
+    `uid`, uname, `password`, sex, phone_num, email, birthday,register_date, last_login_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -35,12 +33,12 @@
   <insert id="insert" keyColumn="uid" keyProperty="uid" parameterType="com.itcast.englis_news.common.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
       insert into user (uname, `password`, sex,
-      age, phone_num, email,
-      register_date, last_login_date, isVerify
+      phone_num, email,birthday,
+      register_date, last_login_date
       )
       values (#{uname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR},
-      #{age,jdbcType=INTEGER}, #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=VARCHAR},
-      #{registerDate,jdbcType=TIMESTAMP}, #{lastLoginDate,jdbcType=TIMESTAMP}, #{isVerify,jdbcType=CHAR}
+      #{phoneNum,jdbcType=CHAR}, #{email,jdbcType=VARCHAR},#{birthday,jdbcType=TIMESTAMP},
+      #{registerDate,jdbcType=TIMESTAMP}, #{lastLoginDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" keyColumn="uid" keyProperty="uid" parameterType="com.itcast.englis_news.common.User" useGeneratedKeys="true">
@@ -56,23 +54,20 @@
       <if test="sex != null">
         sex,
       </if>
-      <if test="age != null">
-        age,
-      </if>
       <if test="phoneNum != null">
         phone_num,
       </if>
       <if test="email != null">
         email,
       </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
       <if test="registerDate != null">
         register_date,
       </if>
       <if test="lastLoginDate != null">
         last_login_date,
-      </if>
-      <if test="isVerify != null">
-        isVerify,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -85,23 +80,20 @@
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
       </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
-      </if>
       <if test="phoneNum != null">
         #{phoneNum,jdbcType=CHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
       <if test="registerDate != null">
         #{registerDate,jdbcType=TIMESTAMP},
       </if>
       <if test="lastLoginDate != null">
         #{lastLoginDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isVerify != null">
-          #{isVerify,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -118,23 +110,20 @@
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
       </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
-      </if>
       <if test="phoneNum != null">
         phone_num = #{phoneNum,jdbcType=CHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="birthday != null">
+        register_date = #{birthday,jdbcType=TIMESTAMP},
+      </if>
       <if test="registerDate != null">
         register_date = #{registerDate,jdbcType=TIMESTAMP},
       </if>
       <if test="lastLoginDate != null">
         last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isVerify != null">
-          isVerify = #{isVerify,jdbcType=CHAR},
       </if>
     </set>
     where `uid` = #{uid,jdbcType=INTEGER}
@@ -145,12 +134,17 @@
       set uname = #{uname,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
-      age = #{age,jdbcType=INTEGER},
       phone_num = #{phoneNum,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP}
       register_date = #{registerDate,jdbcType=TIMESTAMP},
-      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
-      isVerify = #{isVerify,jdbcType=CHAR}
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP}
       where `uid` = #{uid,jdbcType=INTEGER}
   </update>
+    <select id="selectByEmail" resultType="integer">
+      select count(1) from user where `email`= #{email,jdbcType=VARCHAR};
+    </select>
+  <select id="selectUserByEmail" resultMap="BaseResultMap" parameterType="string">
+    select * from user where `email`=#{email,jdbcType=VARCHAR};
+  </select>
 </mapper>

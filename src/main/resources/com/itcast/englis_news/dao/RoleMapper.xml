@@ -58,4 +58,7 @@
     set rname = #{rname,jdbcType=VARCHAR}
     where rid = #{rid,jdbcType=INTEGER}
   </update>
+  <select id="selectByUserID" resultMap="BaseResultMap" parameterType="integer">
+    select role.* from role left join user_role ur on role.rid = ur.rid and ur.uid=#{uid,jdbcType=INTEGER};
+  </select>
 </mapper>
